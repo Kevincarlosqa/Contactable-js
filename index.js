@@ -1,5 +1,5 @@
 import { login, logout, signUp } from "./src/services/sessions-service.js";
-import { contactList, showContact, deleteContact } from "./src/services/contacts-service.js";
+import { contactList } from "./src/services/contacts-service.js";
 
 const credentials = {
 	email: "test@mail.com",
@@ -15,14 +15,9 @@ login(credentials)
 .then(user => console.log(user))
 .catch(error => console.error(error))
 
-// contactList().then(data => console.log(data))
-// .catch(error => console.error(error))
+contactList().then(data => console.log(data))
+.catch(error => console.error(error))
 
-// showContact(5).then(data => console.log(data))
-// .catch(error => console.error(error))
-
-// deleteContact(4).then(data => console.log(data))
-// .catch(error => console.error(error))
 
 // logout()
 
