@@ -1,5 +1,4 @@
-const BASE_URI = "https://contactable-js-api.herokuapp.com/"
-const tokenKey =  "Token"
+import { tokenKey, BASE_URI } from "../config.js";
 
 console.log("hiola");
 async function login(credentials = {email, password}) {
