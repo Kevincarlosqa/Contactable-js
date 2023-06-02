@@ -6,16 +6,26 @@ const credentials = {
 	password: "123456"
 }
 
-const newuser = {
-  email: "joel@mail.com",
-	password: "qwerty"
+// const newuser = {
+//   email: "joel@mail.com",
+// 	password: "qwerty"
+// }
+
+const newContact = {
+  name: "Testino",
+  email: "test@MediaList.com",
+  number: 1234567890,
+  relation: "Friends"
 }
 
 login(credentials)
-.then(user => console.log(user))
+.then(user => console.log(user.token))
 .catch(error => console.error(error))
 
-contactList().then(data => console.log(data))
+// createContact(newContact).then(data => console.log(data))
+// .catch(error => console.error(error))
+
+showContact(1).then(data => console.log(data))
 .catch(error => console.error(error))
 
 

@@ -2,7 +2,7 @@ import { tokenKey, BASE_URI } from "../config.js";
 
 
 async function contactList() {
-    const response = await fetch(`${BASE_URI}/contacts`, {
+    const response = await fetch(`${BASE_URI}contacts`, {
       method: "GET",
       headers: {
         Authorization: `Token token=${sessionStorage.getItem(tokenKey)}`,
@@ -20,7 +20,7 @@ async function contactList() {
 }
 
 async function showContact(id) {
-    const response = await fetch(`${BASE_URI}/contacts/${id}`, {
+    const response = await fetch(`${BASE_URI}contacts/${id}`, {
       method: "GET",
       headers: {
         Authorization: `Token token=${sessionStorage.getItem(tokenKey)}`,
@@ -37,23 +37,17 @@ async function showContact(id) {
     return data
   }
 
-async function createContact({name, email, number, relation}) {
 
-    const newContact = {
-      "name": name,
-      "email": email,
-      "number": number,
-      "relation": relation
-    }
+async function createContact(newContact) {
 
-    const response = await fetch((`${BASE_URI}/contacts`, {
+    const response = await fetch(`${BASE_URI}/contacts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Token token=${sessionStorage.getItem(tokenKey)}`,
       },
       body: JSON.stringify(newContact)
-    }))
+    })
 
     if(!response.ok) {
       const data = await response.json()
