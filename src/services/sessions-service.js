@@ -44,7 +44,7 @@ async function logout() {
     }
 
   if (!response.ok) {
-    const data = await response.json() 
+    data = await response.json() 
     throw new Error(data.errors)
   }
   console.log(response);

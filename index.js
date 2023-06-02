@@ -9,5 +9,5 @@ login(credentials)
   .then(user => console.log(user))
   .catch(error => console.error(error))
 
-logout().then((response) => console.log(response))
+logout()
 
