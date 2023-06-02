@@ -1,13 +1,19 @@
-import { login, logout} from "./src/services/sessions-service.js";
+import { login, logout, signUp } from "./src/services/sessions-service.js";
 
 const credentials = {
 	email: "test@mail.com",
 	password: "123456"
 }
 
-login(credentials)
-  .then(user => console.log(user))
-  .catch(error => console.error(error))
+const newuser = {
+  email: "joel@mail.com",
+	password: "qwerty"
+}
 
-logout()
+// login(credentials)
+//   .then(user => console.log(user))
+//   .catch(error => console.error(error))
 
+// logout()
+
+signUp(newuser)

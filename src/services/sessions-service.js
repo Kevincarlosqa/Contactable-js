@@ -54,4 +54,34 @@ async function logout() {
   return data
 }
 
-export  { login, logout}
+async function signUp(newuser = {email, password}) {
+  const response = await fetch(`${BASE_URI}/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newuser)
+
+  })
+
+  if(!response.ok) {
+    const data = await response.json()
+    throw new Error(data.errors)
+  }
+  console.log(response);
+  const data = await response.json();
+  // console.log(data);
+  sessionStorage.setItem(tokenKey, data.token)
+
+  return data
+}
+
+
+
+
+
+
+
+
+
+export  { login, logout, signUp } 
