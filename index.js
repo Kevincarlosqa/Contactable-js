@@ -1,5 +1,5 @@
 import { login, logout, signUp } from "./src/services/sessions-service.js";
-import { contactList } from "./src/services/contacts-service.js";
+import { contactList, showContact, createContact, deleteContact } from "./src/services/contacts-service.js";
 
 const credentials = {
 	email: "test@mail.com",
