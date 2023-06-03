@@ -23,8 +23,8 @@ const newContact = {
   relation: "Friends"
 }
 
-// login(credentials)
-// .then(user => console.log(user.token))
+// login(credentials).then(() => init())
+// // .then(user => console.log(user.token))
 // .catch(error => console.error(error))
 
 // createContact(newContact).then(data => console.log(data))
@@ -44,12 +44,13 @@ async function init() {
 	//logica de Inicio
 	try {
 		const token = sessionStorage.getItem(tokenKey)
-		if(!token) return DOMHandler.load(loginPage)
+		if(!token) throw new Error
 		console.log("hello");
 		DOMHandler.load(homePage)
 	} catch (error) {
 		sessionStorage.removeItem(tokenKey)
 		DOMHandler.load(loginPage)
+		console.log(error);
 	}
 }
 
