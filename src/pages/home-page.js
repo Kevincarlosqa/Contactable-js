@@ -1,6 +1,7 @@
 import { logout } from "../services/sessions-service.js";
 import DOMHandler from "../dom-handler.js";
 import loginPage from "./login-page.js";
+import contacts from "../components/contacts.js";
 import STORE from "../store.js";
 
 function render() {
@@ -13,7 +14,8 @@ function render() {
     </header>
     <main class="section">
       <section class="container">
-        <p class="">CONTACTS()</p>
+        <p class="">CONTACTS(${STORE.contacts.length})</p>
+        ${contacts}
         <a>New Contact</a>
       </section>
     </main>
