@@ -46,7 +46,7 @@ async function init() {
 	try {
 		const token = sessionStorage.getItem(tokenKey)
 		if(!token) throw new Error
-		// console.log("hello");
+		console.log(STORE.user);
 		await STORE.fetchContacts()
 		DOMHandler.load(homePage)
 	} catch (error) {
