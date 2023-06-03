@@ -1,6 +1,11 @@
+import DOMHandler from "../dom-handler.js";
+import homePage from "./home-page.js";
+import { login } from "../services/sessions-service.js";
 import { input } from "../components/input.js";
+import STORE from "../store.js";
 
 function render() {
+  const loginError = this.state.loginError
   return `
   <main class="section">
     <section class="container">
@@ -14,7 +19,7 @@ function render() {
           placeholder: "jhon@example.com",
           type: "email",
           required: true,
-          value: "test3@mail.com",
+          value: "test@mail.com",
         })}
 
 
@@ -27,7 +32,8 @@ function render() {
           required: true,
           value: "123456",
         })}        
-
+        ${loginError?  `<p class="text-center error-300"> ${loginError}</p>`:""}
+       
         <button class="button button--primary">Login</button>
       </form>
       <a href="#" class="block text-center js-signup-link">Create account</a>
@@ -35,11 +41,47 @@ function render() {
   </main>`
 }
 
+function listenSubmitForm() {
+  console.log(this);
+  const form = document.querySelector(".js-login-form")
+  // async function por que va a esperar al login
+  form.addEventListener("submit", async (event) => {
+
+    try {
+      event.preventDefault()
+  
+      const { email, password} = event.target.elements
+  
+      const credentials = {
+        email: email.value,
+        password: password.value
+      }
+  
+      const user = await login(credentials)
+      STORE.user = user
+      console.log(STORE);
+      DOMHandler.load(homePage)
+      
+    } catch (error) {
+      // STORE.loginError = error.message
+      this.state.loginError = error.message
+      DOMHandler.reload()
+      console.log(error);
+    }
+
+  })
+}
 const loginPage = {
   toString() {
-    return render();
+    return render.call(this);
   },
-  addListeners() {},
+  addListeners() {
+    listenSubmitForm.call(this)
+  },
+  state: {
+   loginError: null
+  }
+    
 }
 
 export default loginPage
