@@ -75,12 +75,4 @@ async function signUp(newuser = {email, password}) {
   return data
 }
 
-
-
-
-
-
-
-
-
 export  { login, logout, signUp } 
