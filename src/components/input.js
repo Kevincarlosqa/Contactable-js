@@ -1,10 +1,10 @@
-export function input(label, 
+export function input({label, 
                       id, 
                       name, 
                       placeholder="", 
                       type, 
                       required = false, 
-                      value = false) {
+                      value = false}) {
   return `
     <div class="input">
       ${label? `<label for="${id}" class="content-xs overline">${label}</label>` : ""}
