@@ -1,6 +1,6 @@
 import { tokenKey, BASE_URI } from "../config.js";
 
-console.log("hiola");
+// console.log("hiola");
 async function login(credentials = {email, password}) {
   const response = await fetch(`${BASE_URI}/login`, {
     method: "POST",

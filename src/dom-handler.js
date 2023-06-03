@@ -1,7 +1,7 @@
 const DOMHandler = (function(parentSelector) {
   const parent = document.querySelector(parentSelector)
 
-  if(parent) throw new Error("Parent not found")
+  if(!parent) throw new Error("Parent not found")
 
   return {
     module: null,
@@ -12,7 +12,7 @@ const DOMHandler = (function(parentSelector) {
     },
     reload() {
       this.load(this.module)
-    }
+    },
   }
 })("#root")
 
