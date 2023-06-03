@@ -5,6 +5,7 @@ import DOMHandler from "./src/dom-handler.js";
 import loginPage from "./src/pages/login-page.js";
 import homePage from "./src/pages/home-page.js";
 import { tokenKey } from "./src/config.js";
+import STORE from "./src/store.js";
 
 const credentials = {
 	email: "test@mail.com",
@@ -45,7 +46,8 @@ async function init() {
 	try {
 		const token = sessionStorage.getItem(tokenKey)
 		if(!token) throw new Error
-		console.log("hello");
+		// console.log("hello");
+		await STORE.fetchContacts()
 		DOMHandler.load(homePage)
 	} catch (error) {
 		sessionStorage.removeItem(tokenKey)

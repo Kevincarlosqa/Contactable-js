@@ -42,7 +42,7 @@ function render() {
 }
 
 function listenSubmitForm() {
-  console.log(this);
+  // console.log(this);
   const form = document.querySelector(".js-login-form")
   // async function por que va a esperar al login
   form.addEventListener("submit", async (event) => {
@@ -59,7 +59,9 @@ function listenSubmitForm() {
   
       const user = await login(credentials)
       STORE.user = user
-      console.log(STORE);
+      await STORE.fetchContacts()
+      
+      // console.log(STORE);
       DOMHandler.load(homePage)
       
     } catch (error) {
