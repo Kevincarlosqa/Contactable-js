@@ -14,7 +14,6 @@ function render() {
     </header>
     <main class="section">
       <section class="container">
-        <p class="">CONTACTS(${STORE.contacts.length})</p>
         ${contacts}
         <a>New Contact</a>
       </section>
