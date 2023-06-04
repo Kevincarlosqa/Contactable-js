@@ -42,7 +42,8 @@ const homePage = {
     return render()
   },
   addListeners() {
-    listenLogout()
+    listenLogout(),
+    contacts.addListeners()
   },
 }
 

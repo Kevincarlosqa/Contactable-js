@@ -1,9 +1,11 @@
 import STORE from "../store.js";
+import contactDetail from "../pages/contact-detail.js";
+import DOMHandler from "../dom-handler.js";
 
 function renderContacts(contact) {
   return `
   <li>
-    <a>${contact.name}</a>
+    <a data-id=${contact.id}>${contact.name}</a>
   </li>
 `
 }
@@ -20,6 +22,22 @@ function renderFavoriteContacts(favoriteContacts) {
   }
 }
 
+function listenContact(){
+  const ul = document.querySelector(".js-contact-list")
+  ul.addEventListener("click", async (event) => {
+
+    event.preventDefault()
+    const showContact = event.target.closest("[data-id]")
+    // this.contact.id = showContact
+    if(!showContact) return
+    STORE.contactId = showContact.getAttribute('data-id')
+    console.log(STORE.contactId);
+    // console.log(showContact.dataset.id);
+    DOMHandler.load(contactDetail)
+  })
+
+}
+
 function render(){
   const contacts = STORE.contacts
   const favorites = STORE.favorites
@@ -32,7 +50,7 @@ function render(){
         ${favorites.map(contact => renderFavoriteContacts(contact)).join("")}
       </ul>
       <p class="">CONTACTS(${STORE.contacts.length})</p>
-      <ul>
+      <ul class="js-contact-list">
         ${contacts.map(contact => renderContacts(contact)).join("")}
       </ul>
     `
@@ -48,10 +66,10 @@ function render(){
 
 const contacts = {
   toString() {
-    return render()
+    return render.call(this)
   },
   addListeners() {
-
-  }
+    listenContact.call(this)
+  },
 }
 export default contacts

@@ -10,6 +10,7 @@ const STORE = {
   user: null,
   contacts: [],
   favorites: [],
+  contactId: null,
   fetchContacts
 }
 

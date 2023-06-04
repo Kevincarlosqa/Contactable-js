@@ -36,7 +36,7 @@ function render() {
        
         <button class="button button--primary">Login</button>
       </form>
-      <a href="#" class="block text-center js-signup-link">Create account</a>
+      <a href="#" class="block text-center js-signup-link">Signup</a>
     </section>
   </main>`
 }
