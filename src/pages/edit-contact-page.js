@@ -7,6 +7,7 @@ import STORE from "../store.js"
 import contactDetail from "./contact-detail.js"
 
 function renderEditContact() {
+  const contact = STORE.contacts.filter((contact) => contact.id == STORE.contactId)
   return `
     <header class="header">
     <navbar class="navbar">
@@ -25,6 +26,7 @@ function renderEditContact() {
           placeholder: "Name",
           type: "text",
           required: true,
+          value: `${contact[0].name}`,
           
         })}
 
@@ -35,6 +37,7 @@ function renderEditContact() {
           placeholder: "Number",
           type: "tel",
           required: true,
+          value: `${contact[0].number}`,
           
         })}     
         
@@ -45,6 +48,7 @@ function renderEditContact() {
           placeholder: "Email",
           type: "email",
           required: true,
+          value: `${contact[0].email}`,
         })}
 
       

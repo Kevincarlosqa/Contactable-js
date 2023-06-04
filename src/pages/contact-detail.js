@@ -4,6 +4,7 @@ import DOMHandler from "../dom-handler.js";
 import loginPage from "./login-page.js";
 import homePage from "./home-page.js";
 import editContact from "./edit-contact-page.js";
+import { deleteContact } from "../services/contacts-service.js";
 
 function renderDetail() {
   const contact = STORE.contacts.filter((contact) => contact.id == STORE.contactId)
@@ -22,11 +23,27 @@ function renderDetail() {
       <p>Email: ${contact[0].email}</p>
       
       <a class="js-back">Back</a>
-      <a>Delete</a>
+      <a class="js-delete-contact">Delete</a>
       <a class="js-edit-contact">Edit</a>
     </section>
   </main>
   `
+}
+
+function deleteContactDetail() {
+  const a = document.querySelector(".js-delete-contact")
+  a.addEventListener("click", async (event) => {
+    event.preventDefault()
+    try {
+      const contact = STORE.contacts.filter((contact) => contact.id == STORE.contactId)
+      deleteContact(contact[0].id)
+      await STORE.fetchContacts().then(DOMHandler.load(homePage))
+      
+
+    } catch (error) {
+      console.log(error);
+    }
+  })
 }
 
 function listenEdit() {
@@ -77,7 +94,10 @@ const contactDetail = {
     listenLogout()
     listenBack()
     listenEdit()
+    deleteContactDetail()
   },
 }
+
+
 
 export default contactDetail
