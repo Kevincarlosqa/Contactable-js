@@ -2,6 +2,7 @@ import { logout } from "../services/sessions-service.js";
 import DOMHandler from "../dom-handler.js";
 import loginPage from "./login-page.js";
 import contacts from "../components/contacts.js";
+import createContact from "./create-contact-page.js";
 import STORE from "../store.js";
 
 function render() {
@@ -15,10 +16,24 @@ function render() {
     <main class="section">
       <section class="container">
         ${contacts}
-        <a>New Contact</a>
+        <a class="js-newContact">New Contact</a>
       </section>
     </main>
   `
+}
+
+function listenNewContact(){
+  const a = document.querySelector(".js-newContact")
+  a.addEventListener("click", async (event) => {
+    event.preventDefault()
+    try {
+      console.log("Create contact");
+      DOMHandler.load(createContact)
+
+    } catch (error) {
+      console.log(error);
+    }
+  })
 }
 
 function listenLogout() {
@@ -43,7 +58,8 @@ const homePage = {
   },
   addListeners() {
     listenLogout(),
-    contacts.addListeners()
+    contacts.addListeners(),
+    listenNewContact()
   },
 }
 
