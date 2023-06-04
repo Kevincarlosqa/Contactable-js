@@ -3,6 +3,7 @@ import { logout } from "../services/sessions-service.js";
 import DOMHandler from "../dom-handler.js";
 import loginPage from "./login-page.js";
 import homePage from "./home-page.js";
+import editContact from "./edit-contact-page.js";
 
 function renderDetail() {
   const contact = STORE.contacts.filter((contact) => contact.id == STORE.contactId)
@@ -20,12 +21,25 @@ function renderDetail() {
       <p>Number: ${contact[0].number}</p>
       <p>Email: ${contact[0].email}</p>
       
+      <a class="js-back">Back</a>
+      <a>Delete</a>
+      <a class="js-edit-contact">Edit</a>
     </section>
   </main>
-  <a class="js-back">Back</a>
-  <a>Delete</a>
-  <a>Edit</a>
   `
+}
+
+function listenEdit() {
+  const a = document.querySelector(".js-edit-contact")
+  a.addEventListener("click", async (event) => {
+    event.preventDefault()
+    try {
+      DOMHandler.load(editContact)
+
+    } catch (error) {
+      console.log(error);
+    }
+  })
 }
 
 function listenBack() {
@@ -62,6 +76,7 @@ const contactDetail = {
   addListeners() {
     listenLogout()
     listenBack()
+    listenEdit()
   },
 }
 

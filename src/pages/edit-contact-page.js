@@ -3,8 +3,10 @@ import { input } from "../components/input.js"
 import DOMHandler from "../dom-handler.js"
 import homePage from "./home-page.js"
 import loginPage from "./login-page.js"
+import STORE from "../store.js"
+import contactDetail from "./contact-detail.js"
 
-function renderNewContact() {
+function renderEditContact() {
   return `
     <header class="header">
     <navbar class="navbar">
@@ -60,7 +62,7 @@ function listenCancel() {
   a.addEventListener("click", async (event) => {
     event.preventDefault()
     try {
-      DOMHandler.load(homePage)
+      DOMHandler.load(contactDetail)
 
     } catch (error) {
       console.log(error);
@@ -83,9 +85,9 @@ function listenLogout() {
   })
 }
 
-const createContact = {
+const editContact = {
   toString() {
-   return renderNewContact()
+   return renderEditContact()
   },
   addListeners() {
     listenCancel(),
@@ -93,4 +95,4 @@ const createContact = {
   },
 }
 
-export default createContact
+export default editContact
