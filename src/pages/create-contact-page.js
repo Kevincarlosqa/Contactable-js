@@ -1,5 +1,5 @@
-import { logout } from "../services/sessions-service.js"
 import { input } from "../components/input.js"
+import { logout } from "../services/sessions-service.js"
 import DOMHandler from "../dom-handler.js"
 import homePage from "./home-page.js"
 import loginPage from "./login-page.js"

@@ -11,7 +11,7 @@ function renderEditContact() {
   return `
     <header class="header">
     <navbar class="navbar">
-      <h1 class="heading heading--lg mb-2">Create new Contact</h1>
+      <h1 class="heading heading--lg mb-2">Edit Contact</h1>
       <a class="js-logout">Logout</a>
     </navbar>
     </header>

@@ -2,6 +2,7 @@ import DOMHandler from "../dom-handler.js";
 import homePage from "./home-page.js";
 import { login } from "../services/sessions-service.js";
 import { input } from "../components/input.js";
+import signUpPage from "./signup-page.js";
 import STORE from "../store.js";
 
 function render() {
@@ -36,7 +37,7 @@ function render() {
        
         <button class="button button--primary">Login</button>
       </form>
-      <a href="#" class="block text-center js-signup-link">Signup</a>
+      <a class="block text-center js-signup-link">Signup</a>
     </section>
   </main>`
 }
@@ -73,12 +74,31 @@ function listenSubmitForm() {
 
   })
 }
+
+function listenSignUp() {
+  
+  const signup = document.querySelector(".js-signup-link")
+  signup.addEventListener("submit", async (event) => {
+    console.log("sign");
+    try {
+      event.preventDefault()
+      DOMHandler.load(signUpPage)
+      
+    } catch (error) {
+ 
+      console.log(error);
+    }
+
+  })
+}
+
 const loginPage = {
   toString() {
     return render.call(this);
   },
   addListeners() {
     listenSubmitForm.call(this)
+    listenSignUp()
   },
   state: {
    loginError: null
